@@ -174,7 +174,7 @@ class ProgramKhususPageResource extends Resource
                 ])
                 ->defaultItems(2)
                 ->minItems(1)
-                ->maxItems(5)
+                ->maxItems(15)
                 ->collapsible()
                 ->grid(1),
             ]),

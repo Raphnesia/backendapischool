@@ -1,0 +1,2 @@
+[12-Aug-2025 00:56:51 Asia/Jakarta] PHP Fatal error:  DISEVAL - Use of eval is forbidden in /home/raphnesi/api.raphnesia.my.id/vendor/psy/psysh/src/ExecutionClosure.php(40) : eval()'d code on line 1
+[12-Aug-2025 05:03:28 Asia/Jakarta] PHP Fatal error:  DISEVAL - Use of eval is forbidden in /home/raphnesi/api.raphnesia.my.id/vendor/psy/psysh/src/ExecutionLoopClosure.php(52) : eval()'d code on line 1

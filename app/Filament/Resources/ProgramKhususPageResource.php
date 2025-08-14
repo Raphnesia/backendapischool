@@ -126,15 +126,6 @@ class ProgramKhususPageResource extends Resource
             ]),
 
             Forms\Components\Section::make('Program Khusus Section')->schema([
-                Forms\Components\TextInput::make('section_title')
-                    ->label('Judul Section')
-                    ->default('Program Khusus Kami')
-                    ->required(),
-                Forms\Components\Textarea::make('section_subtitle')
-                    ->label('Subtitle Section')
-                    ->default('Program unggulan yang dirancang khusus untuk mengembangkan potensi siswa')
-                    ->rows(2)
-                    ->required(),
                 Forms\Components\Repeater::make('section_programs')->schema([
                     Forms\Components\TextInput::make('id')
                         ->label('ID Program')

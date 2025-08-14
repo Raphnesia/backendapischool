@@ -60,7 +60,12 @@ class FacilityResource extends Resource
                             ->label('Gambar Fasilitas')
                             ->image()
                             ->directory('facilities')
-                            ->maxSize(2048),
+                            ->disk('public')
+                            ->maxSize(2048)
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->imageEditor()
+                            ->imageCropAspectRatio('16:9')
+                            ->helperText('Format: JPG, PNG, WebP. Maksimal 2MB'),
                         Textarea::make('description')
                             ->label('Deskripsi')
                             ->rows(4)

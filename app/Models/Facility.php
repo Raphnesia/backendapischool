@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Illuminate\Support\Facades\Storage;
+
 
 class Facility extends Model implements HasMedia
 {
@@ -56,36 +56,5 @@ class Facility extends Model implements HasMedia
         return $query->where('category', $category);
     }
 
-    // Get image URL
-    public function getImageUrlAttribute()
-    {
-        if ($this->image) {
-            return Storage::disk('public')->url($this->image);
-        }
-        return null;
-    }
 
-    // Handle image upload
-    public function setImageAttribute($value)
-    {
-        if (is_array($value)) {
-            $value = $value[0] ?? null;
-        }
-        
-        if ($value && is_string($value)) {
-            $this->attributes['image'] = $value;
-        }
-    }
-
-    // Boot method for additional setup
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($facility) {
-            if (empty($facility->slug)) {
-                $facility->slug = \Str::slug($facility->name);
-            }
-        });
-    }
 }

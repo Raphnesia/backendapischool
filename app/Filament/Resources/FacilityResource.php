@@ -64,6 +64,7 @@ class FacilityResource extends Resource
                         Textarea::make('description')
                             ->label('Deskripsi')
                             ->rows(4)
+                            ->required()
                             ->maxLength(2000),
                     ])->columns(2),
 
@@ -102,35 +103,19 @@ class FacilityResource extends Resource
             ->columns([
                 ImageColumn::make('image')
                     ->label('Gambar')
-                    ->circular(),
+                    ->square(),
                 TextColumn::make('name')
-                    ->label('Nama Fasilitas')
+                    ->label('Nama')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('category')
                     ->label('Kategori')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'classroom' => 'info',
-                        'laboratory' => 'warning',
-                        'library' => 'primary',
-                        'sports' => 'success',
-                        'multimedia' => 'danger',
-                        'administration' => 'gray',
-                        'facility' => 'secondary',
-                        default => 'gray',
-                    }),
-                TextColumn::make('capacity')
-                    ->label('Kapasitas')
-                    ->numeric(),
-                TextColumn::make('location')
-                    ->label('Lokasi')
-                    ->searchable(),
+                    ->sortable(),
+                ToggleColumn::make('is_active')
+                    ->label('Aktif'),
                 TextColumn::make('order_index')
                     ->label('Urutan')
                     ->sortable(),
-                ToggleColumn::make('is_active')
-                    ->label('Status'),
             ])
             ->filters([
                 SelectFilter::make('category')
@@ -145,12 +130,6 @@ class FacilityResource extends Resource
                         'facility' => 'Fasilitas Umum',
                         'other' => 'Lainnya',
                     ]),
-                SelectFilter::make('is_active')
-                    ->label('Status')
-                    ->options([
-                        1 => 'Aktif',
-                        0 => 'Tidak Aktif',
-                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -160,15 +139,7 @@ class FacilityResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])
-            ->defaultSort('order_index');
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
+            ]);
     }
 
     public static function getPages(): array
